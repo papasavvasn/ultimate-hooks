@@ -17,16 +17,20 @@ const useField = (type) => {
   }
 }
 
-const unpack = ({ data }) => data
-
 const useResource = (baseUrl) => {
   const [resources, setResources] = useState([])
+  const [shouldFetch, setShouldFetch] = useState([])
 
-  // ...
+  const get = () => axios.get(baseUrl).then((data) => data)
 
-  const get = () => axios.get(baseUrl).then(unpack)
+  const create = (resource) => axios.post(`${baseUrl}`, resource).then(() => setShouldFetch(true))
 
-  const create = (resource) => axios.post(`${baseUrl}`, resource).then(unpack)
+  useEffect(() => {
+    setShouldFetch(false)
+    if (shouldFetch) {
+      get().then((data) => setResources(data))
+    }
+  }, [shouldFetch])
 
   const service = {
     create,
@@ -63,15 +67,14 @@ const App = () => {
         <input {...content} />
         <button>create</button>
       </form>
-      {notes.map(n => <p key={n.id}>{n.content}</p>)}
-
+      {notes.data && notes.data.map(n => <p key={n.id}>{n.content}</p>)}
       <h2>persons</h2>
       <form onSubmit={handlePersonSubmit}>
         name <input {...name} /> <br />
         number <input {...number} />
         <button>create</button>
       </form>
-      {persons.map(n => <p key={n.id}>{n.name} {n.number}</p>)}
+      {persons.data && persons.data.map(n => <p key={n.id}>{n.name} {n.number}</p>)}
     </div>
   )
 }

@@ -7,6 +7,18 @@
     {
       "content": "paras feature ikinä <3",
       "id": 2
+    },
+    {
+      "content": "this is a note",
+      "id": 3
+    },
+    {
+      "content": "new",
+      "id": 4
+    },
+    {
+      "content": "da",
+      "id": 5
     }
   ],
   "persons": [
@@ -14,6 +26,21 @@
       "name": "mluukkai",
       "number": "040-5483923",
       "id": 1
+    },
+    {
+      "name": "fafaf",
+      "number": "fasdfaf",
+      "id": 2
+    },
+    {
+      "name": "fafaf",
+      "number": "fasdfaf",
+      "id": 3
+    },
+    {
+      "name": "da",
+      "number": "fdas",
+      "id": 4
     }
   ]
 }
